@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIFramework\AIFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="move &quot;$(TargetPath)&quot; &quot;$(SolutionDir)GameOfLife\bin\Debug\plugins\$(TargetFileName)&quot;&#xD;&#xA;move &quot;$(TargetDir)\Icon.png&quot; &quot;$(SolutionDir)GameOfLife\bin\Debug\plugins\$(TargetName).png&quot;&#xD;" />
+  </Target>
+
+</Project>
